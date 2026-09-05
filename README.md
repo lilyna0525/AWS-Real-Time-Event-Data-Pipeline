@@ -283,21 +283,31 @@ For a production deployment, AWS Secrets Manager would be preferable for databas
 
 ---
 
-## Evidence
+## Pipeline Evidence
 
-Screenshots in this repository demonstrate:
+### 1. Kinesis Data Stream
 
-1. Kinesis Data Stream
-2. Firehose configuration
-3. Raw event data in S3
-4. Lambda configuration
-5. Kinesis → Lambda trigger
-6. CloudWatch execution logs
-7. RDS MariaDB configuration
-8. RDS Security Group rule
-9. Successfully inserted MariaDB records
+The application events were successfully ingested into Amazon Kinesis Data Streams.
 
-See [`screenshots/SCREENSHOT_GUIDE.md`](screenshots/SCREENSHOT_GUIDE.md) for the exact screen to capture for each item.
+![Kinesis Data Stream](screenshots/01-kinesis.png)
+
+### 2. Raw Data in Amazon S3
+
+The streaming events were delivered to Amazon S3 through Amazon Data Firehose.
+
+![Raw Data in S3](screenshots/03-s3-raw-data.png)
+
+### 3. Lambda Event Processing
+
+AWS Lambda successfully received and processed Kinesis records.
+
+![Lambda CloudWatch Logs](screenshots/06-lambda-cloudwatch.png)
+
+### 4. Data Loaded into MariaDB
+
+Filtered events were successfully inserted into the RDS MariaDB table.
+
+![MariaDB Result](screenshots/09-mariadb-result.png)
 
 ---
 
